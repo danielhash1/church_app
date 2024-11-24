@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  root 'home#index'
+  
+  namespace :admin do
+    root 'home#index'
+    get 'sessions/new'
+    get 'sessions/create'
+    get 'sessions/destroy'
+  end
+
+  resources :posts;
+  resources :ministries;
+
+  get 'admin/login', to: 'admin/sessions#new', as: :new_admin_session
+  post 'admin/login', to: 'admin/sessions#create', as: :admin_session
+  delete 'admin/logout', to: 'admin/sessions#destroy', as: :destroy_admin_session
+
+  # Пример маршрута для админ-панели
+  get 'admin/dashboard', to: 'admin/dashboard#index', as: :admin_dashboard
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

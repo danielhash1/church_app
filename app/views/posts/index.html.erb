@@ -1,0 +1,29 @@
+<main class="flex-grow flex flex-col min-h-screen"> 
+    <!-- Blog/Post Section -->
+    <section class="py-16 bg-gray-50 flex-grow fade-in"> <!-- Added fade-in for section -->
+        <div class="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8">Our Blog</h2>
+
+            <div class="flex justify-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <% @posts.reverse.each do |post| %>
+                    <%= link_to post, class: "bg-gray-200 w-full block transition duration-200 ease-in-out rounded-xl cursor-pointer hover:shadow-lg blog-card", href: post_path(post) do %>
+                        <% if post.images.attached? %>
+                            <%= image_tag post.images.first, class: 'h-60 w-full object-cover rounded-t-xl' %>
+                        <% else %>
+                            <%= image_tag 'default-image.png', class: 'h-60 w-full object-cover rounded-t-xl', alt: 'Default Image' %>
+                        <% end %>
+                        
+                        <p class="mt-2 font-semibold text-md"><%= post.title %></p>
+                        <p class="text-xs text-gray-500"><%= post.created_at.strftime("%B %d, %Y") %></p> <!-- Дата -->
+                        <p class="text-sm mt-3 text-gray-600 pb-3 px-3 overflow-hidden"><%= post.description.truncate(80) %></p> <!-- Описание с фиксированной высотой -->
+                    <% end %>
+                <% end %>
+                
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
