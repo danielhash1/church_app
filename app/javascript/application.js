@@ -2,5 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-alert("Скрипт загружен!");
-console.log("Скрипт загружен!");
+console.log("Script loaded!");
