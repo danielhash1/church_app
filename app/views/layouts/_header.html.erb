@@ -37,11 +37,11 @@
     <!-- Mobile Menu -->
     <nav id="mobile-menu" class="mt-16 py-6 md:hidden bg-white shadow-md hidden absolute top-0 left-0 w-full">
         <div class="flex flex-col items-center gap-3">
-            <a href="#" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Home</a>
-            <a href="#benefits-id" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">About Us</a>
-            <a href="#contact-us-id" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Contact Us</a>
-            <a href="blog.html" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Blog</a>
-            <a href="ministries.html" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Ministries</a>
+            <a href="/" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Home</a>
+            <a href="/#benefits-id" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">About Us</a>
+            <a href="/#contact-us-id" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Contact Us</a>
+            <a href="<%= posts_path %>" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Blog</a>
+            <a href="<%= ministries_path %>" class="py-2 transition duration-200 ease-in-out text-black hover:text-teal-500">Ministries</a>
 
             <div class="py-2 text-center">
                 <!-- Uncomment if user is signed in -->
@@ -50,7 +50,7 @@
                 <a href="#" class="text-red-500 hover:text-red-300">Logout</a>
                 -->
                 <!-- Uncomment if user is not signed in -->
-                <%= link_to 'Admin Login', admin_sessions_new_path, class: "transition duration-200 ease-in-out text-black hover:text-teal-500" %>
+                <%= link_to 'Login', admin_sessions_new_path, class: "transition duration-200 ease-in-out text-black hover:text-teal-500" %>
 
 
             </div>
