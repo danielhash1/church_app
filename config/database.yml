@@ -1,20 +1,21 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: my_app_development
+  adapter: sqlite3
+  database: storage/development.sqlite3
 
 test:
   <<: *default
-  database: my_app_test
+  adapter: sqlite3
+  database: storage/test.sqlite3
 
 production:
+  <<: *default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: <%= ENV['SUPABASE_DB_NAME'] %>
   username: <%= ENV['SUPABASE_DB_USER'] %>
   password: <%= ENV['SUPABASE_DB_PASSWORD'] %>
