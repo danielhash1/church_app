@@ -19,4 +19,4 @@ production:
   username: <%= ENV['SUPABASE_DB_USER'] %>
   password: <%= ENV['SUPABASE_DB_PASSWORD'] %>
   host: <%= ENV['SUPABASE_DB_HOST'] %>
-  port: 5432
+  port: 6543
