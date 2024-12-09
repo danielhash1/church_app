@@ -136,13 +136,19 @@
         <h2 class="text-3xl font-bold mb-6">Our Blog</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             <% @posts.reverse.take(3).each do |post| %>
-                <div class="bg-gray-200 max-w-xs mx-auto block transition duration-200 w-72 ease-in-out rounded-xl cursor-pointer hover:shadow-lg fade-in fade-in-delay-3">
-                    <img src="<%= post.image_url || 'default_image.jpg' %>" class="h-40 w-full object-cover rounded-t-xl" alt="<%= post.title %>">
+                <%= link_to post_path(post), class: "bg-gray-200 max-w-xs mx-auto block transition duration-200 w-72 ease-in-out rounded-xl cursor-pointer hover:shadow-lg fade-in fade-in-delay-3" do %>
+                    <% if post.images.attached? %>
+                    <%= image_tag post.images.first, class: 'h-40 w-full object-cover rounded-t-xl' %>
+                    <% else %>
+                    <%= image_tag 'default-image.png', class: 'h-40 w-full object-cover rounded-t-xl', alt: 'Default Image' %>
+                    <% end %>
+                    
                     <p class="mt-2 font-semibold text-md"><%= post.title %></p>
                     <p class="text-xs text-gray-500"><%= post.created_at.strftime("%B %d, %Y") %></p> <!-- Date formatting -->
                     <p class="text-sm mt-2 text-gray-600 pb-3 px-3"><%= post.description.truncate(80) %></p> <!-- Truncate for brevity -->
-                </div>
-            <% end %>
+                <% end %>
+                <% end %>
+
         </div>
         <%= link_to 'More Posts', posts_path, class: 'transition duration-200 ease-in-out px-6 py-3 bg-teal-500 text-white font-semibold shadow-md rounded-lg hover:bg-black hover:text-white' %>
     </div>

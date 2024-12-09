@@ -1,0 +1,47 @@
+<div>
+  <h2 class="text-3xl font-bold my-8 text-center "> 
+    <i class="fa-solid fa-feather"></i> Create a new post
+  </h2>
+
+  <%= form_with model: @post, local: true, class: "max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-md mt-4", multipart: true do |form| %>
+    
+    <% if @post.errors.any? %>
+      <div id="error_explanation" class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+        <h2 class="font-semibold">
+          <%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:
+        </h2>
+        <ul class="list-disc list-inside">
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :title, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_area :description, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none", rows: 5 %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :video_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :video_url, required: false, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none", rows: 5 %>
+    </div>
+
+    <!-- Поле для загрузки нескольких изображений -->
+    <div class="mb-4">
+      <%= form.label 'Upload Images', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :images, multiple: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: false %>
+      <small class="text-gray-500">You can upload multiple images</small>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <%= form.submit "Create Post", class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>
