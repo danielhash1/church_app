@@ -8,12 +8,17 @@
       <%= form_with url: admin_session_path, method: :post, local: true, class: "space-y-10" do |f| %>
         <div class="mb-4">
           <%= f.label :email, class: "block text-gray-700" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-3 py-2 mt-1 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", required: true %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "w-full px-3 py-2 mt-1 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", required: true %>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 relative">
           <%= f.label :password, class: "block text-gray-700" %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "w-full px-3 py-2 mt-1 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", required: true %>
+          <%= f.password_field :password, id: "password_field", autocomplete: "off", class: "w-full px-3 py-2 mt-1 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500", required: true %>
+
+          <!-- Show/Hide Password Button -->
+          <button type="button" id="togglePassword" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 mt-3">
+            <span id="password-toggle-text">Show</span>
+          </button>
         </div>
 
         <%= f.submit "Log in", class: "cursor-pointer w-full py-2 mt-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
@@ -22,3 +27,21 @@
   </div>
 
 </div>
+
+<script>
+  document.getElementById("togglePassword").addEventListener("click", function() {
+    var passwordField = document.getElementById("password_field");
+    var toggleText = document.getElementById("password-toggle-text");
+    
+    // Toggle password visibility
+    var type = passwordField.type === "password" ? "text" : "password";
+    passwordField.type = type;
+    
+    // Change button text
+    if (type === "password") {
+      toggleText.textContent = "Show";
+    } else {
+      toggleText.textContent = "Hide";
+    }
+  });
+</script>

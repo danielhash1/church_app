@@ -1,13 +1,15 @@
 <main class="flex-grow flex flex-col min-h-screen"> 
-    <!-- Blog/Post Section -->
     <section class="py-16 bg-gray-50 flex-grow fade-in"> <!-- Added fade-in for section -->
         <div class="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
 
-        
             <h2 class="text-3xl font-bold mb-8">Our Blog</h2>
 
-            <%= link_to 'Create a new post +', new_post_path, class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-5 rounded focus:outline-none focus:shadow-outline" %>
-            
+            <% if session[:user_id] %>
+                <% user = User.find_by(id: session[:user_id]) %>
+                <% if user&.admin? %>
+                <%= link_to 'Create a new post +', new_post_path, class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-5 rounded focus:outline-none focus:shadow-outline" %>
+                <% end %>
+            <% end %>        
 
             <div class="flex justify-center mt-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

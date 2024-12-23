@@ -96,6 +96,7 @@
     </div>
 </section>
 
+
 <!-- Styles for smooth transitions -->
 <style>
     .hiddenText {
@@ -128,8 +129,6 @@
 </script>
 
 
-
-
 <!-- Blog/Post Section -->
 <section class="py-12 px-4 bg-white scroll-smooth fade-in fade-in-delay-2">
     <div class="max-w-4xl mx-auto text-center">
@@ -145,14 +144,14 @@
                     
                     <p class="mt-2 font-semibold text-md"><%= post.title %></p>
                     <p class="text-xs text-gray-500"><%= post.created_at.strftime("%B %d, %Y") %></p> <!-- Date formatting -->
-                    <p class="text-sm mt-2 text-gray-600 pb-3 px-3"><%= post.description.truncate(80) %></p> <!-- Truncate for brevity -->
+                    <p class="text-sm mt-2 text-gray-600 pb-3 px-3"><%= post.description.truncate(100, separator: ' ') %></p> <!-- Truncate for brevity -->
                 <% end %>
-                <% end %>
-
+            <% end %>
         </div>
         <%= link_to 'More Posts', posts_path, class: 'transition duration-200 ease-in-out px-6 py-3 bg-teal-500 text-white font-semibold shadow-md rounded-lg hover:bg-black hover:text-white' %>
     </div>
 </section>
+
 
 
 <!-- Contact Us Section -->

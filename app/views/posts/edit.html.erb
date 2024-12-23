@@ -1,7 +1,13 @@
 <div class="h-screen">
-  <h2 class="text-3xl font-bold my-8 text-center"> 
+
+  <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" onclick="window.history.back()">< Back</button>
+
+
+  <h2 class="text-3xl font-bold my-8 text-center">
     <i class="fa-solid fa-feather"></i> Edit Post
   </h2>
+
+  
 
   <%= form_with model: @post, local: true, class: "max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-md mt-4", multipart: true do |form| %>
     
@@ -20,24 +26,49 @@
 
     <div class="mb-4">
       <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :title, required: true, value: @post.title, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.text_field :title, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-4">
       <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_area :description, required: true, value: @post.description, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none", rows: 5 %>
+      <%= form.text_area :description, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows: 5 %>
     </div>
 
     <div class="mb-4">
       <%= form.label :video_url, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :video_url, required: false, value: @post.video_url, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none", rows: 5 %>
+      <%= form.text_field :video_url, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
-    <!-- Поле для загрузки нескольких изображений -->
+    <!-- Display existing images -->
     <div class="mb-4">
-      <%= form.label 'Upload Images', class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.file_field :images, multiple: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: false %>
+      <%= form.label 'Existing Images', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <% if @post.images.attached? %>
+        <ul>
+          <% @post.images.each_with_index do |image, index| %>
+            <li class="mb-2">
+              <%= image_tag image, class: "w-32 h-32 object-cover" %>
+              <div class="flex items-center mt-2">
+                <%= check_box_tag "post[images_to_delete][]", image.id, false, class: "mr-2" %>
+                <span class="text-gray-500 text-sm">Delete this image</span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-gray-500">No images uploaded yet.</p>
+      <% end %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label 'Upload New Images', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.file_field :images, multiple: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "new_images" %>
       <small class="text-gray-500">You can upload multiple images</small>
+    </div>
+
+    <!-- Preview selected images -->
+    <div id="image_preview" class="mb-4">
+      <p class="text-gray-500">Selected images:</p>
+      <div id="preview_container" class="flex flex-wrap gap-4"></div>
     </div>
 
     <div class="flex items-center justify-center">
@@ -45,3 +76,32 @@
     </div>
   <% end %>
 </div>
+
+<script>
+// Код для отображения изображений в предварительном просмотре
+document.addEventListener("DOMContentLoaded", function() {
+  const fileInput = document.getElementById("new_images");
+  const previewContainer = document.getElementById("preview_container");
+
+  fileInput.addEventListener("change", function(event) {
+    previewContainer.innerHTML = ""; // Очищаем предыдущие превью
+
+    const files = event.target.files;
+    if (files) {
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+          const imageElement = document.createElement("img");
+          imageElement.src = e.target.result;
+          imageElement.classList.add("w-32", "h-32", "object-cover");
+          previewContainer.appendChild(imageElement);
+        };
+
+        reader.readAsDataURL(file); // Прочитать файл и отобразить как изображение
+      });
+    }
+  });
+});
+
+</script>

@@ -11,10 +11,21 @@
 
 Post.destroy_all
 Ministry.destroy_all
+User.destroy_all
+
+users = [
+  { email: 'daniel@gmail.com', password: 'password', name: 'Daniel', admin: true }
+]
+
+users.each do |user|
+  User.create!(user)
+end
+
+puts "#{users.length} users loaded successfully."
+
+
 posts = [
-  { title: 'New Health Guidelines', image_url: 'https://www.statnews.com/wp-content/uploads/2022/03/AdobeStock_246942922.jpeg', description: ' Details about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of HealthDetails about the new health guidelines issued by the Ministry of Health' },
-  { title: 'Education Reform Plan', image_url: 'https://www.teachhub.com/wp-content/uploads/2020/05/Top-12-Pioneers-in-Education-scaled.jpg', description: 'Overview of the new education reform plan' },
-  { title: 'Defense Budget Update', image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ2jzRNqu_k3m0nIpm5rTLUMHFqsZmQrGiqQ&s', description: 'Latest updates on the defense budget' }
+  { title: 'Who is Jesus?', description: 'Jesus is the Son of God and our Savior.', image_url: 'https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b' },
 ]
 
 posts.each do |post|

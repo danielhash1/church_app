@@ -17,3 +17,98 @@
 * {
     scroll-behavior: smooth;
 };
+
+/* Fullscreen Modal */
+.fullscreen-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fullscreenImage {
+    max-width: 90%;
+    max-height: 90%;
+    transition: transform 0.3s ease;
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Image Hover Effect */
+#fullscreenImage:hover {
+    transform: scale(1.05);
+}
+
+
+/* Стиль для модального окна */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000; /* Убедитесь, что модальное окно на переднем плане */
+    overflow: auto; /* Запрещает переполнение контента */
+}
+
+.modal-content {
+    margin: auto;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    z-index: 1001; /* Убедитесь, что содержимое модального окна выше фона */
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.hidden {
+    display: none;
+}

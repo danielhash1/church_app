@@ -1,17 +1,22 @@
 <% if @post.images.attached? || @post.video_url.present? %>
-  <div class="max-w-2xl mx-auto p-4 h-screen">
+    <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" onclick="window.history.back()">< Back</button>
+
+<div class="max-w-2xl mx-auto p-4 h-screen">
     
-    <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800" onclick="window.history.back()"><- Back</button>
 
     <h3 class="text-4xl text-center font-bold mb-2"><%= @post.title %></h3>
-    <p class="text-center mb-4"><%= @post.created_at.strftime("%d %B %Y") %></p>
+    <p class="text-center mb-4 text-gray-400"><%= @post.created_at.strftime("%d %B %Y") %></p>
 
-    <div class="mb-4 justify-center flex gap-3">
-      <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
-      <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" %>
-    </div>
+    <% if session[:user_id] %>
+      <% user = User.find_by(id: session[:user_id]) %>
+      <% if user&.admin? %>
+          <div class="mb-4 justify-center flex gap-3">
+        <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" %>
+      </div>
+      <% end %>
+    <% end %>     
 
-    <!-- Карусель -->
     <div class="carousel relative">
       <div class="carousel-track-container overflow-hidden w-full">
         <div class="carousel-track flex transition-transform duration-300 ease-in-out rounded-xl">

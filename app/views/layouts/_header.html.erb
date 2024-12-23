@@ -24,14 +24,20 @@
             <a href="<%= ministries_path %>" class="transition duration-200 ease-in-out text-black hover:text-teal-500">Ministries</a>
         </nav>
         <div class="relative hidden md:block">
-            <div id="user-info">
-                <!-- Uncomment if user is signed in -->
-                <!--
-                <p>John Doe <span class="text-gray-400">(Owner)</span></p>
-                <a href="#" class="text-red-500">Logout</a>
-                -->
-                <!-- Uncomment if user is not signed in -->
+        <div id="user-info">
+            <% if session[:user_id] %>
+                <% user = User.find_by(id: session[:user_id]) %>
+                <% if user %>
+                <p><%= user.name %> <span class="text-gray-400">(Owner)</span></p>
+                <%= link_to 'Logout', admin_sessions_destroy_path, method: :delete, class: "text-red-500" %>
+                <% else %>
+                <% session.delete(:user_id) %>
                 <%= link_to 'Login', admin_sessions_new_path, class: "transition duration-200 ease-in-out text-black hover:text-teal-500" %>
+                <% end %>
+            <% else %>
+
+                <%= link_to 'Login', admin_sessions_new_path, class: "transition duration-200 ease-in-out text-black hover:text-teal-500" %>
+            <% end %>
             </div>
         </div>
     </div>
