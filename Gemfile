@@ -16,6 +16,9 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'activestorage-cloudinary-service'
+
+
 # Добавьте Postgres для продакшена
 gem 'pg', '~> 1.2'
 
