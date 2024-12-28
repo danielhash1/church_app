@@ -18,6 +18,12 @@
     scroll-behavior: smooth;
 };
 
+/* Добавьте этот стиль в ваш CSS */
+p + p {
+    margin-top: 1em;  /* Добавляем отступ между абзацами */
+}
+
+
 /* Fullscreen Modal */
 .fullscreen-modal {
     position: fixed;

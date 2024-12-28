@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
+
   
   namespace :admin do
     root 'home#index'
@@ -9,8 +10,12 @@ Rails.application.routes.draw do
     get 'sessions/destroy'
   end
 
-  resources :posts;
-  resources :ministries;
+resources :posts
+# config/routes.rb
+resources :ministries do
+  patch 'update_order', on: :collection
+end
+
 
   get 'admin/login', to: 'admin/sessions#new', as: :new_admin_session
   post 'admin/login', to: 'admin/sessions#create', as: :admin_session

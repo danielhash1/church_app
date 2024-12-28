@@ -1,0 +1,66 @@
+<div class='h-full'>
+
+  <div class='pt-10 pb-10'>
+    <%= link_to '< Back', ministries_path, class: "back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" %>
+
+    <div class='flex text-center justify-center'>
+      <h2 class='text-3xl text-center font-bold flex justify-center'>Edit Ministry</h2>
+    </div>
+
+    <%= form_with model: @ministry, local: true, class: "max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-md mt-4" do |form| %>
+
+      <!-- Ошибки валидации -->
+      <% if @ministry.errors.any? %>
+        <div id="error_explanation" class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          <h2 class="font-semibold">
+            <%= pluralize(@ministry.errors.count, "error") %> prohibited this ministry from being saved:
+          </h2>
+          <ul class="list-disc list-inside">
+            <% @ministry.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Поля формы -->
+      <div class="mb-4">
+        <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :name, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_area :description, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows: 5 %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :schedule, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_area :schedule, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows: 3 %>
+      </div>
+
+      <!-- Поле для загрузки изображения -->
+      <div class="mb-4">
+        <%= form.label :image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.file_field :image, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        
+        <!-- Отображение текущего изображения, если оно прикреплено -->
+        <% if @ministry.image.attached? %>
+          <div class="mt-4">
+            <p>Current Image:</p>
+            <%= image_tag @ministry.image, class: "h-56 w-80 object-cover rounded-xl" %>
+            <%= check_box_tag :remove_image, '1', false, class: "mt-2" %>
+            <%= label_tag :remove_image, "Remove image" %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Кнопка отправки формы -->
+      <div class="flex items-center justify-center mt-6">
+        <%= form.submit "Update Ministry", class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>
