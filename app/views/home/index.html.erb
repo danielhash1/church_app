@@ -81,6 +81,7 @@
     </div>
 </section>
 
+
 <!-- Blog/Post Section -->
 <section class="py-12 px-4 bg-white scroll-smooth fade-in fade-in-delay-2">
     <div class="max-w-4xl mx-auto text-center">
@@ -88,11 +89,16 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             <% @posts.reverse.take(3).each do |post| %>
                 <%= link_to post_path(post), class: "bg-gray-200 max-w-xs mx-auto block transition duration-200 w-72 ease-in-out rounded-xl cursor-pointer hover:shadow-lg fade-in fade-in-delay-3" do %>
-                    <% if post.images.attached? %>
-                    <%= image_tag post.images.first, class: 'h-40 w-full object-cover rounded-t-xl' %>
+                    <% # Получаем изображение из связанной таблицы 'images' %>
+
+                    <% if post.images.any? %>
+                    <% image = post.images.first %>
+                    <%= image_tag url_for(image), class: 'h-40 w-full object-cover rounded-t-xl' %>
                     <% else %>
                     <%= image_tag 'default-image.png', class: 'h-40 w-full object-cover rounded-t-xl', alt: 'Default Image' %>
                     <% end %>
+
+
                     
                     <p class="mt-2 font-semibold text-md"><%= post.title %></p>
                     <p class="text-xs text-gray-500"><%= post.created_at.strftime("%B %d, %Y") %></p> <!-- Date formatting -->
@@ -103,6 +109,7 @@
         <%= link_to 'More Posts', posts_path, class: 'transition duration-200 ease-in-out px-6 py-3 bg-teal-500 text-white font-semibold shadow-md rounded-lg hover:bg-black hover:text-white' %>
     </div>
 </section>
+
 
 
 <!-- Contact Us Section -->
