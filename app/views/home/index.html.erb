@@ -1,133 +1,85 @@
-<section class="relative parallax-bg fade-in fade-in-delay-1" 
-    style="background-image: url(<%= asset_path('hero-img.jpg') %>); 
-            height: 70vh; 
-            background-repeat: no-repeat; 
-            background-size: cover; 
-            background-position: center;">
+<!-- Hero Section -->
+<section class="relative parallax-bg fade-in fade-in-delay-1 h-[70vh] bg-no-repeat bg-cover bg-center" 
+    style="background-image: url(<%= asset_path('hero-img.jpg') %>);">
     <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-40 px-5">
-        <h1 class="text-4xl text-center sm:text-5xl font-bold text-white">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-white fade-in-element">
             Ethiopian Evangelical <br> Church Bonn
         </h1>
-        <p class="mt-3 text-gray-300 text-lg">የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን</p>
-        <a href="#benefits-id" class="mt-4 px-8 py-4 bg-teal-500 text-white font-semibold shadow-md rounded-lg transition duration-200 ease-in-out hover:bg-black hover:text-white">
+        <p class="mt-3 text-gray-300 text-sm sm:text-lg fade-in-element">የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን</p>
+        <a href="#benefits-id" class="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-teal-500 text-white font-semibold shadow-md rounded-lg transition duration-200 ease-in-out hover:bg-black hover:text-white fade-in-element">
             Learn More
         </a>
     </div>
-</section>
 
+    <!-- Benefits Section overlaid on Hero -->
+    <div class="absolute -bottom-10 max-sm:-bottom-96 w-full flex justify-center z-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 max-w-7xl mx-auto">
+            
+            <!-- Mission -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-lg fade-in-element">
+                <h3 class="text-lg sm:text-xl font-bold mb-3">Our Mission</h3>
+                <p class="text-sm sm:text-base">Our mission is to fulfill the Great Commission by spreading the Gospel, teaching God’s Word, and leading souls to the Kingdom of God through faithful witness and education.</p>
+            </div>
 
+            <!-- Vision -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-lg fade-in-element">
+                <h3 class="text-lg sm:text-xl font-bold mb-3">Our Vision</h3>
+                <p class="text-sm sm:text-base">We envision a vibrant community rooted in faith, recognizing God’s sovereignty and the Holy Trinity, leading to transformed lives and a powerful witness in our neighborhoods.</p>
+            </div>
 
-<!-- New Section with Floating Containers -->
-<section class="relative bg-white py-16 fade-in fade-in-delay-2 z-10" id="benefits-id">
-    <div class="absolute inset-x-0 top-[-5rem] max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 text-center">
-        <!-- First Container -->
-        <div class="bg-white p-6 rounded-3xl shadow-lg fade-in fade-in-delay-3">
-            <h3 class="text-xl font-bold mb-4">Our Mission</h3>
-            <p>Our mission is to fulfill the Great Commission by spreading the Gospel, teaching God’s Word, and leading souls to the Kingdom of God through faithful witness and education.</p>
-        </div>
-
-        <!-- Second Container -->
-        <div class="bg-white p-6 rounded-3xl shadow-lg fade-in fade-in-delay-3">
-            <h3 class="text-xl font-bold mb-4">Our Vision</h3>
-            <p>We envision a vibrant community rooted in faith, recognizing God’s sovereignty and the Holy Trinity, leading to transformed lives and a powerful witness in our neighborhoods.</p>
-        </div>
-
-        <!-- Third Container -->
-        <div class="bg-white p-6 rounded-3xl shadow-lg fade-in fade-in-delay-3">
-            <h3 class="text-xl font-bold mb-4">Get Involved</h3>
-            <p>Join us in spreading the Gospel! <br> Volunteer, participate in activities, or support our outreach programs. Together, we can build a thriving community of faith and service in Christ's name.</p>
+            <!-- Get Involved -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-lg fade-in-element">
+                <h3 class="text-lg sm:text-xl font-bold mb-3">Get Involved</h3>
+                <p class="text-sm sm:text-base">Join us in spreading the Gospel! Volunteer, participate in activities, or support our outreach programs. Together, we can build a thriving community of faith and service in Christ's name.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="py-16 px-10 mt-96 md:mt-0 bg-white fade-in fade-in-delay-2" id="about-us-id"> 
-    <div class="max-w-7xl mx-auto text-center mt-16 lg:mt-0 ">
 
-        <h2 class="text-5xl text-left font-extrabold mb-8">About Us</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex justify-center items-center">
 
-            <div class="text-left fade-in fade-in-delay-3">
-                <!-- English Text -->
+<!-- About Us Section -->
+<section class="py-10 sm:py-16 px-4 sm:px-10 bg-white max-sm:pt-96 fade-in fade-in-delay-2 mt-20 " id="about-us-id">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-5xl md:text-4xl max-sm:text-5xl font-extrabold mb-6 text-left fade-in-element">About Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <!-- Text Content -->
+            <div class="text-left fade-in-element">
                 <p id="mainTextEnglish">
-                <span class='text-xl font-bold'>The Ethiopian Evangelical Church’s mission</span>
-                <br>
-                is based on the command given by our Lord Jesus Christ in Matthew 28:19-20 and Mark 16:15, to preach the Gospel, win souls for God’s Kingdom, teach God’s Word, and make disciples.
+                    <span class='text-lg sm:text-xl font-bold'>The Ethiopian Evangelical Church’s mission</span><br>
+                    is based on the command given by our Lord Jesus Christ in Matthew 28:19-20 and Mark 16:15, to preach the Gospel, win souls for God’s Kingdom, teach God’s Word, and make disciples.
                 </p>
-
                 <p id="moreTextEnglish" class="hiddenText">
                     <br>
-                    The Church believes: <br>
-                    (1) God is eternal, omnipotent, and above all, incomparable in any way. (Isaiah 40:28)
-                    <br>
-                    (2) God is the Creator and supreme ruler of all visible and invisible creation. (Genesis 1:1-31, Colossians 1:15-16)
-                    <br>
-                    (3) God is one, revealed in three persons: Father, Son, and Holy Spirit (the Trinity), existing and working together eternally. (John 14:26, 2 Corinthians 13:13-14, 1 Corinthians 12:4-6, Revelation 1:8)
+                    The Church believes:<br>
+                    <span class='text-xl font-bold'>1.</span> God is eternal, omnipotent, and above all, incomparable in any way. (Isaiah 40:28)<br><br>
+                    <span class='text-xl font-bold'>2.</span> God is the Creator and supreme ruler of all visible and invisible creation. (Genesis 1:1-31, Colossians 1:15-16)<br><br>
+                    <span class='text-xl font-bold'>3.</span> God is one, revealed in three persons: Father, Son, and Holy Spirit (the Trinity), existing and working together eternally. (John 14:26, 2 Corinthians 13:13-14, 1 Corinthians 12:4-6, Revelation 1:8)<br><br>
                 </p>
-
-                <button class="mt-2 mb-4 text-black bg-teal-300 px-3 py-1 rounded-full" id="showMoreBtnEnglish" onclick="toggleText('English')">Show More...</button>
-
+                <button class="mt-2 mb-4 text-black bg-teal-300 px-3 py-1 rounded-full text-sm" id="showMoreBtnEnglish" onclick="toggleText('English')">Show More...</button>
 
                 <!-- Amharic Text -->
                 <p id="mainTextAmharic">
-                <span class='text-xl font-semibold'>የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን ዓላማዋ</span>    
-                <br>
+                    <span class='text-lg sm:text-xl font-semibold'>የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን ዓላማዋ</span><br>
                     ጌታችን ኢየሱስ ክርስቶስ በማቴዎስ ወንጌል 28:19-20 እና በማርቆስ ወንጌል 16:15 በሰጠው ትዕዛዝ መሠረት በወንጌል ስብከት ነፍሳትን በመውረስ ወደ እግዚአብሔር መንግሥት በማፍለስ የእግዚአብሔርን ቃል እያስተማረች በማሳደግ ደቀ መዛሙርትን የማፍራት ተልዕኮዋን መወጣት ነው::
                 </p>
-
                 <p id="moreTextAmharic" class="hiddenText">
                     <br>
-                    <br>
-                    ቤተ ክርስቲያኗ:- <br>
-                    (1)	እግዚአብሄር ዘላለማዊ ሁሉን ቻይና ከሁሉም በላይ የሆነ በምንም የማይመሰል አምላክ እነደሆነ ታምናለች፡፡ ኢሳ. 40:28:: 
-                    <br>
-                    (2)	የፍጥረት ሁሉ የሚታዩና የማይታዩ እንዲሁም በውስጣቸው ያሉት ፍጥረታት ሁሉ ፈጣሪና የበላይ አስተዳዳሪ እንደሆነ ታምናለች፡፡ ዘፍ. 1:1‐31፣ ቆላ. 1:15‐16:: 
-                    <br>
-                    (3)	በአብ በወልድና በመንፈስ ቅዱስ ሦስት መለኮታዊ አካላት (ሥላሴ) የተገለጠ፣ የነበረ ያለና የሚኖር እና የሚሰራ አንድ አምላክ እነደሆነ ታምናለች፡፡
+                    ቤተ ክርስቲያኗ:<br>
+                    <span class='text-xl font-bold'>1.</span> እግዚአብሄር ዘላለማዊ ሁሉን ቻይና ከሁሉም በላይ የሆነ በምንም የማይመሰል አምላክ እነደሆነ ታምናለች፡፡ (ኢሳ. 40:28)<br><br>
+                    <span class='text-xl font-bold'>2.</span> የፍጥረት ሁሉ ፈጣሪና የበላይ አስተዳዳሪ እንደሆነ ታምናለች፡፡ (ዘፍ. 1:1-31, ቆላ. 1:15-16)<br><br>
+                    <span class='text-xl font-bold'>3.</span> በአብ በወልድና በመንፈስ ቅዱስ ሦስት መለኮታዊ አካላት (ሥላሴ) እነደሆነ ታምናለች፡፡<br><br>
                 </p>
-
-                <button class="mt-2 text-black bg-teal-300 px-3 py-1 rounded-full" id="showMoreBtnAmharic" onclick="toggleText('Amharic')">Show More...</button>
-
+                <button class="mt-2 text-black bg-teal-300 px-3 py-1 rounded-full text-sm" id="showMoreBtnAmharic" onclick="toggleText('Amharic')">Show More...</button>
             </div>
 
-                        <div class="perspective-container p-2 fade-in fade-in-delay-3">
-                <img src="<%= asset_path('church-image.jpg') %>" class="perspective-img p-2 shadow-md h-72 sm:h-96 flex justify-center mx-auto rounded-3xl" alt="">
+            <!-- Image Content -->
+            <div class="fade-in-element">
+                <img src="<%= asset_path('church-image.jpg') %>" class="rounded-3xl shadow-md w-full max-w-md mx-auto" alt="Church Image">
             </div>
         </div>
     </div>
 </section>
-
-
-<!-- Styles for smooth transitions -->
-<style>
-    .hiddenText {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-    }
-
-    .showText {
-        max-height: 500px; /* adjust to accommodate your content */
-        transition: max-height 0.5s ease-in;
-    }
-</style>
-
-<script>
-    function toggleText(language) {
-        var moreText = document.getElementById("moreText" + language);
-        var showMoreBtn = document.getElementById("showMoreBtn" + language);
-        
-        if (moreText.classList.contains("hiddenText")) {
-            moreText.classList.remove("hiddenText");
-            moreText.classList.add("showText");
-            showMoreBtn.innerText = "Show Less...";
-        } else {
-            moreText.classList.remove("showText");
-            moreText.classList.add("hiddenText");
-            showMoreBtn.innerText = "Show More...";
-        }
-    }
-</script>
-
 
 <!-- Blog/Post Section -->
 <section class="py-12 px-4 bg-white scroll-smooth fade-in fade-in-delay-2">
@@ -153,44 +105,99 @@
 </section>
 
 
-
 <!-- Contact Us Section -->
-<section class="py-16 bg-gradient-to-r from-blue-400 to-green-400 fade-in fade-in-delay-2" id="contact-us-id">
+<section class="py-16 bg-gradient-to-r from-blue-400 to-green-400 fade-in fade-in-delay-2" id="contact-us-id" data-aos="fade-up">
     <div class="max-w-7xl mx-auto text-center">
-        <h2 class="text-4xl font-bold text-white mb-8">Contact Us</h2>
-        <div class="bg-white shadow-lg p-8 rounded-3xl inline-block transition-transform transform hover:scale-105 fade-in fade-in-delay-3">
+        <h2 class="text-4xl font-bold text-white mb-8" data-aos="fade-down">Contact Us</h2>
+        <div class="bg-white shadow-lg p-8 rounded-3xl inline-block transition-transform transform hover:scale-105 fade-in fade-in-delay-3" data-aos="zoom-in" data-aos-delay="100">
             <a href="tel:+49 172 751 0678"><p class="hover:text-gray-500 text-lg font-semibold text-gray-700"><span class="font-normal">+49 172 751 0678</span></p></a>
             <a href="tel:+49 152 510 15814"><p class="hover:text-gray-500 text-lg font-semibold text-gray-700"><span class="font-normal">+49 152 510 15814</span></p></a>
             <a href="mailto:ethioevangelicalbonn@gmail.com" class="hover:text-gray-500 text-lg font-semibold text-gray-700"><span class="font-normal">ethioevangelicalbonn@gmail.com</span></a>
-            <br>
-
-            <div class="flex justify-center space-x-4 mt-2">
+            <div class="flex justify-center space-x-4 mt-2" data-aos="fade-up" data-aos-delay="200">
                 <a href="https://www.facebook.com/people/Ethiopian-evangelical-Church-in-BonnGermany/61570843404858/" target='_blank' class="text-black hover:text-teal-500 transition-colors duration-300">
                     <i class="fab fa-facebook text-4xl"></i>
                 </a>
-
                 <a href="https://wa.me/491727510678" target='_blank' class="text-black hover:text-teal-500 transition-colors duration-300">
                     <i class="fab fa-whatsapp text-4xl"></i>
                 </a>
-
                 <a href="https://www.youtube.com/@ethiopianevangelicalchurchbonn" target='_blank' class="text-black hover:text-teal-500 transition-colors duration-300">
                     <i class="fab fa-youtube text-4xl"></i>
                 </a>
-
-
-
-        </div>
-        
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Map and Form Section -->
-<section class="py-16 px-10 bg-gray-50 justify-center fade-in fade-in-delay-2">
+<!-- Google Maps Section -->
+<section class="py-16 px-10 bg-gray-50 justify-center fade-in fade-in-delay-2" data-aos="fade-up">
     <div class="max-w-2xl mx-auto items-center">
         <div class="rounded-lg text-center fade-in fade-in-delay-3">
-        <a href='https://maps.app.goo.gl/sE2c9U2u9eJUs4Ei9' target='_blank'class="text-2xl shadow-sm  font-semibold bg-teal-200 px-3 py-2 rounded-xl">Open in <i class="fa-brands fa-google"></i> Maps</a>
-        <iframe class="border rounded-3xl shadow-md w-full h-96 mt-8" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2527.1576932714866!2d7.157434551626796!3d50.69845815784848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bee40f91c8b17f%3A0xdd3b09f4c32bbe70!2sEvangelical%20Free%20Church%20congregation%20Bonn!5e0!3m2!1sen!2sde!4v1728558808896!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    
-
+            <a href="https://maps.app.goo.gl/sE2c9U2u9eJUs4Ei9" target="_blank" class="text-2xl shadow-sm font-semibold bg-teal-200 px-3 py-2 rounded-xl" data-aos="zoom-in">
+                Open in <i class="fa-brands fa-google"></i> Maps
+            </a>
+            <iframe class="border rounded-3xl shadow-md w-full h-96 mt-8" 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5054.333077989827!2d7.157128!3d50.698294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bee40f91c8b17f%3A0xdd3b09f4c32bbe70!2sEvangelical%20Free%20Church%20congregation%20Bonn!5e0!3m2!1sen!2sde!4v1735481973614!5m2!1sen!2sde" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                data-aos="fade-up" data-aos-delay="200">
+            </iframe>
+        </div>
     </div>
 </section>
+
+<!-- Styles for Smooth Transitions -->
+<style>
+    .hiddenText {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+
+    .showText {
+        max-height: 500px;
+        transition: max-height 0.5s ease-in;
+    }
+
+    /* Add fade-in effect when element appears */
+    .fade-in-element {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-element.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function toggleText(language) {
+        const moreText = document.getElementById("moreText" + language);
+        const showMoreBtn = document.getElementById("showMoreBtn" + language);
+
+        if (moreText.classList.contains("hiddenText")) {
+            moreText.classList.remove("hiddenText");
+            moreText.classList.add("showText");
+            showMoreBtn.innerText = "Show Less...";
+        } else {
+            moreText.classList.remove("showText");
+            moreText.classList.add("hiddenText");
+            showMoreBtn.innerText = "Show More...";
+        }
+    }
+
+    // Intersection Observer to trigger fade-in effect when scrolled into view
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll('.fade-in-element');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(element => observer.observe(element));
+    });
+</script>

@@ -1,20 +1,11 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-
 Post.destroy_all
 Ministry.destroy_all
 User.destroy_all
 
 users = [
-  { email: 'daniel@gmail.com', password: 'password', name: 'Daniel', admin: true }
+  { email: 'ethioevangelicalbonn@gmail.com', password: 'adminPassWord$@2025', name: 'Admin', admin: true },
+  { email: 'jirenlife@gmail.com', password: 'passWordJiregna2025', name: 'Jiregna', admin: true },
+  { email: 'daniel@gmail.com', password: 'passwordForDaniel', name: 'Daniel', admin: true }
 ]
 
 users.each do |user|
@@ -25,7 +16,7 @@ puts "#{users.length} users loaded successfully."
 
 
 posts = [
-  { title: 'Who is Jesus?', description: 'Jesus is the Son of God and our Savior.', image_url: 'https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b' },
+  { title: 'Who is Jesus?', description: 'Jesus is the Son of God and our Savior.' },
 ]
 
 posts.each do |post|
@@ -38,133 +29,51 @@ puts "#{posts.length} posts loaded successfully."
 ministries = [
   {
     name: 'Sermons',
-    description: 'የቤተ ክርስቲያናችን የእሁድ መደበኛ ፕሮግራም የሰዓት ድልድል፦
-     የጸሎት ጊዜ 14:00-14:30
-     የመዝሙር (አምልኮ) ጊዜ 14:30-15:15
-     የልጆች መዝሙር ጊዜ 15:15-15:30
-     የቃል ትምህርትና ስብከት ጊዜ 15:30-16:30
-     የሻይና ቡና ጊዜ 16:30-17:30',
-    
+    description: 'Sermons are the regular Sunday program at our church. Here’s the breakdown of the schedule for Sunday services.',
+    schedule: <<~SCHEDULE
+       Prayer Time: 14:00-14:30
+       Worship Time: 14:30-15:15
+       Children’s Worship Time: 15:15-15:30
+       Bible Study and Sermon Time: 15:30-16:30
+       Tea and Coffee Time: 16:30-17:30
+    SCHEDULE
   },
   {
     name: 'Bible Study Groups',
-    description: 'መጽሐፍ ቅዱስ ሕያው እና ሥልጣን ያለው የእግዚአብሔር ቃል ነው። በክርስትና ሕይወታችን ውስጥ በቃሉ እውነት ላይ
-      የተመሠረተ ጠንካራ እድገት ለማግኘት ከሁሉ የተሻለው መንገድ በጋራ መጽሐፍ ቅዱስ ጥናት ውስጥ መካፈል ነው። ለዚህ
-      እንዲመች መጽሐፍ ቅዱስን በጋራ የሚያጠኑ አነስተኛ ቁጥር ያላቸው ቡድኖች አሉን። እነዚህ ትናንሽ፣ የበለጠ ቅርበት
-      ያላቸው ቡድኖች የአዲስ ኪዳንን “ኅብረት” ማግኘት የምትችሉበትን እድል ይሰጣሉ። ማለትም በኢየሱስ ክርስቶስ የጋራ
-      ሕይወታችንን መካፈል ነው። በዚህም መሰረት ለጊዘው ሁለት መርሀ ግብሮች አሉን፡፡ አንደኛው የአጋፔ የመጽሐፍ ቅዱስ
-      ጥናት ቡድን ሲሆን ሁለተኛው የቤርያ የመጽሐፍ ቅዱስ ጥናት ነው፡፡ የመጀመርያው ዘወትር ማከሰኞ ከ 18፡30 ጀምሮ
-      የሚካሄድ ሲሆን ሁለተኛው ዘወትር ሀሙስ ከ 18፡00 ጀምሮ ይካሄዳል፡፡
-      እርስዎም ምቹ የሆነውን ቡድን በመቀላቀል የእግዚአብሔርን ቃል ከኛ ጋር እንዲያጠኑ ተጋብዘዋል፡፡',
-   
+    description: 'Bible study groups are a vital part of our spiritual growth. They offer a deeper dive into the Word of God in small, supportive groups.',
+    schedule: <<~SCHEDULE
+       Agape Bible Study: Monday from 18:30
+       Berea Bible Study: Thursday from 18:00
+    SCHEDULE
   },
   {
     name: 'Daily Bible Reading',
-    description: 'በየዕለቱ ከእግዚአብሔር ቃል ጋር፦ በዓመት አንድ ጊዜ ሙሉውን መጽሐፍ ቅዱስ ለመጨረስ የሚያስችል መርሃ ግብር
-      “የእግዚአብሔር ሰው ፍጹምና ለበጎ ሥራ ሁሉ የተዘጋጀ ይሆን ዘንድ፥ የእግዚአብሔር መንፈስ ያለበት መጽሐፍ ሁሉ ለትምህርትና
-      ለተግሣጽ ልብንም ለማቅናት በጽድቅም ላለው ምክር ደግሞ ይጠቅማል” (2ጢሞቴዎስ 3፡17)። የእስራኤልን ሕዝብ እየመራ
-      ከግብጽ ባርነት ነጻ እንዲያወጣቸው እግዚአብሔር የሾመው ሙሴ ከሞተ በኋላ እግዚአብሔር ኢያሱ በቀጣይነት እንዲመራ
-      ሲያሰማራው የሰጠው መመሪያ በቃሉ እንዲተጋና ይህ ሲሆን በሁሉ እንደሚከናወለለት ገልጾለት ነበር፦  “የዚህ ሕግ መጽሐፍ
-      ከአፍህ አይለይ፥ ነገር ግን የተጻፈበትን ሁሉ ትጠብቅና ታደርግ ዘንድ በቀንም በለሊትም አስበው፤ የዚያን ጊዜም መንገድህ
-      ይቀናልሃል ይከናወንልሃልም” (ኢያሱ 1፡8)።
-      ስለዚህ ቤተ ክርስቲያናችን ለእግዚአብሔር ቃል (መጽሐፍ ቅዱስ) ልዩ ትኩረት ትሰጣለች። ሰው በሕይወቱ ለማደግና
-      የእግዚአብሔርን ሃሳብ ተረድቶ ለማገልገል እንዲሁም በኑሮው የሚነሱትን ተግዳሮቶች ለመቋቋም በጸሎት እየተጋ ቃሉን በየዕለቱ
-      ሊመገብ ይገባል፣ መጽሐፍ ቅዱስን በትጋት ማንበብ አለበት ብላ ታምናለች። 
-      ለዚህ አንዲያግዝ መጽሐፍ ቅዱስን በየዕለቱ በማንበብ በዓመት አንድ ጊዜ ለመጨረስ የሚያስችል መርሃ ግብር አዘጋጅታ ተግባራዊ
-      በማድረግ ላይ ትገኛለች። በየዕለቱ የሚነበበው የመጽሐፍ ቅዱስ ክፍል (መጽሐፉና ምዕራፎቹ) ተለይተው ተቀምጠዋል። ማንበብ
-      ለማይችሉና ቃሉን ካነበቡ በኋላ ለማስታወስ ተጨማሪ እገዛ ለሚፈልጉ እንዲያገለግል በማሰብ የየዕለቱ ምንባብ በድምጽም
-      ጭምር በማህበራዊ ሚዲያ (በአሁኑ ጊዜ “ቃሉን ማንበብ Reading the Bible” በሚለው WhatsApp Group) ላይ
-      እንዲቀመጥ ተደርጓል።
-      ለበለጠ መረጃ እባክዎን ያነጋግሩን።',
-    
+    description: 'Daily Bible reading allows us to stay in constant connection with God through His Word. Each day brings us closer to a deeper understanding of the Scriptures.',
+    schedule: <<~SCHEDULE
+       Daily reading schedule can be found in our WhatsApp group.
+    SCHEDULE
   },
   {
-    name: 'Children and Youth Ministry ',
-    description: 'የህፃናት እና ወጣቶች አገልግሎት ለህፃናት እና ወጣቶች ከሳምንቱ መደበኛ የአምልኮ ፕሮግራማችን ጋር በተመሳሳይ ሰዓት
-  ይሰጣል። በተለያዩ የአካል፣ የአዕምሮ፣ ማህበራዊ እና መንፈሳዊ የዕድገት ደረጃዎች ላይ ያሉትን ህጻናት እና ወጣቶች
-  በሚያሳትፍ መንገድ በእግዝያብሄር ቃል እንዲያድጉ የሚያግዝ ትምህርታዊ አገልግሎት ይሰጣል። የዚህ ሚንስትሪ
-  ተልእኮ ልጆችን እና ወጣቶችን ወደ ኢየሱስ ክርስቶስ በመምራት ክርስቶስን ወደምመስል ህይውት ማሳደግ ነው፡፡ ለበለጠ
-  መረጃ እባክዎን ያነጋግሩን።',
-   
+    name: 'Children and Youth Ministry',
+    description: 'The Children and Youth Ministry provides age-appropriate spiritual growth through Bible study, worship, and fellowship activities designed to help the younger generation grow in faith.',
+    schedule: <<~SCHEDULE
+       Regular Sunday service: 14:00-16:00
+       Weekly small group gatherings for deeper study and prayer.
+    SCHEDULE
   },
   {
     name: 'Women’s Ministry',
-    description: 'የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን የእህቶች ህብረት አገልግሎት ካሉን ጠንካራ ህብረቶች ውስጥ አንዱ ነው፡፡ 
-      የህብረቱ አላማ:- 
-       ሴቶች እግዚአብሔር የሰጣቸውን ፀጋ እና ችሎታ በማወቅ እንዲጠቀሙና ለቤተ ክርስቲያን  አልፎም ለምድር በረከት
-      እንዲሆኑ  መርዳት ነው፡፡
-        በተጨማሪም እኅቶች በሁሉም አቅጣጫ ዉጤታማ እንዲሆኑ ማገዝ ነው :: 
-      የእህቶች ህብረት የፕሮግራሞቹ ይዘት :-
-       የመፅሐፍ ቅዱስ ጥናት (እህቶችን መሰረት ያደረገ ጥናት )---&gt; ሰኞ ከ ከ21: 00 - 22:00 በ online What&#39;sApp
-      group 
-
-        ጸሎት---&gt;  ቅዳሜ ከ21:00 እስከ 22፡00 (በ online| What&#39;sApp group)
-        በየወሩ መጨረሻ ቅዳሜ ከ 16:00 - 18:00 በአካል በመገናኘት የቤት ለቤት የመፅሐፍ ቅዱስ ጥናት እና እርስ በርስ
-      የመተናነፅ ጊዜ 
-        አመታዊ የእኅቶች ኮንፍራንስ 
-        ልዩ ልዩ የአንድነት እና የፍቅር ጊዜ (ግሪል, የጋራ ጉዞ....)
-      በተጨማሪም የህይወት ተሞክሮዎቻቸውን ይከፋፈላሉ፤ ጌታ በህይወታቸው ያደረገውን ይመሰክራሉ። በዚህም እርስ በእርሳቸው
-      ይተናነጻሉ።
-      የሴቶች ህብረት አገልግሎት በሁሉም እድሜ ያሉትን ሴቶች ያማከለ የጸሎት እና የመፅሐፍ ቅዱስ ጥናት የያዘ በመሆኑ ካሉበት ቦታ
-      ሆነው ይቀላቀሉን፡፡',
-   
-  },
-  {
-    name: 'Prayer Groups',
-    description: 'የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን ቦን አገልግሎት ቀጣይነት ያለው የጸሎት አገልግሎት አለው። እግዚአብሔር ለጸሎት ምላሽ
-  እንደሚሰጥ ታምናለች፡፡ በቤተ ክርስቲያናችን ውስጥ የጸሎት ቡድን አባል ለመሆን ብዙ እድሎች አሉ :: የጾምና ጸሎት ጊዜ በየወሩ
-  የመጀመርያው አርብ ከቀኑ 11፡00 ጀምሮ የሚካሄድ ሲሆን የአዳር ጸሎትም በዛው ቀን የወሩ የመጀመርያው አርብ ከ20፡00
-  ሰአት ጀምሮ በጸሎት ህብረት አስተባባሪ የተመደበ ሰው የዕለቱን ጸሎት ይመራዋል:: ሁሉም ምዕመናን በያሉበት የሚሳተፉበት
-  የሰንሰለት ጾምና ጸሎት ያለን ሲሆን የጸሎት ርዕስ ደግሞ በጸሎት ህብረት አስተባባሪ እየተዘጋጀ በቤተ ክርስቲያን ማስታወቂያ
-  ይነገራል:: ለበለጠ መረጃ እባክዎን ያነጋግሩን።',
-   
-  },
-  {
-    name: 'Worship, Art and Drama Ministry',
-    description: 'የመዝሙር ፤ ሥነ/ጽሑፍ እና ድራማ አገልግሎት ሥር የኳየርና የሥነ ጽሑፍ ዘርፎች አሉ::
-የመዝሙር ፤ ሥነጽሑፍ እና ድራማ አገልግሎት ዓላማው ቅዱሳን ክርስቶስን በነገር ሁሉ በዜማና በመዝሙር እንዲያመልኩ
-ለመርዳት ነው። አምልኮ ወሰን የሌለውን የእግዚአብሔርን ዋጋ የሚገልጹትን ሁሉንም የልብ፣ የአዕምሮ እና የአካል ስራዎች
-ለመሸፈን የምንጠቀምበት ቃል ነው። የድራማ አገልግሎታችን ዓላማ ክርስቲያናዊ ጭብጦችን እና የመጽሐፍ ቅዱስ ታሪኮችን
-በመድረክ ላይ በመንፈሳዊ፣ በተጨባጭ እና ሙያዊ በሆነ መንገድ ማሳየት ነው።',
-   
-  },
-  {
-    name: 'Social and Compassion Ministry',
-    description: 'ማህበራዊ እና ሁለንተናዊ ሚኒስትሪ አግልግሎት በኢትዮጵያ እና በጀርመን ያሉት ክርስትያኖች እንዲሁም ክርስትያን ያልሆኑት
-ማህበራዊ እና ኢኮኖሚያዊ ፍላጎታቸውን እንዲያሟሉ ለመርዳት ነው። ሁለንተናዊ አግልግሎት የእግዚአብሔርን መንግሥት
-የምሥራች ለሰው ሁሉ ለማድረስ ያለመ ነው። የእግዚአብሄርን ፍቅር በተግባር ማሳያ መንገድ አንዱ ነው ብላ ታምናለች፡፡',
-  
-  },
-
-  {
-    name: 'Elders',
-    description: 'ቤተ ክርስቲያኗ የምትመራው በሽማግሌዎች ጉባኤ ነው፡፡ የሽማግሌዎች ጉባኤ እግዚአብሔርንና ምዕመናንን በመወከል ባለ አደራ
-ሆኖ የእግዚአብሔርን ሕዝብ ያስተዳድራል:፡ በየ 3 አመቱ የምመረጡ ስሆን፡ በአሁኑ ወቅት ሽማግሌዎች፦
-(1) ዶ/ር ግርማ ቀልቦሮ
-
-(2) ዶ/ር ተካልኝ ጉቱ',
-    
-  },
-
-  {
-    name: 'Media Ministry',
-    description: 'የሚድያ ሚንስትሪ አገልግሎት በአንድ ቤተ ክርስቲያን ውስጥ ያለው ሚና ከፍተኛ ነው፡፡ በተለይ የቤተ ክርስትያንን ወንጌልን የማስፋፋት
-ተልእኮዋን በመደገፍ እና በማጉላት ረገድ ከፍተኛ ድርሻ አለው። በዚህ በዲጂታል ዘመን የሚድያ አግልግሎት የቤተክርስቲያንን መልእክት
-ተደራሽነት ለማስፋት ጠቃሚ መሣሪያ ሆኖ ያገለግላል፣ ለዚህም ቤተ ክርስቲያናችን ልዩ ትኩረት ሰጥታ ትሰራለች፡፡
-ቤተ ክርስቲያናችን ብዙ ሰዎችን ለመድረስ፣ የአምልኮ ልምዶችን ለማጎልበት እና የቤተክርስቲያንን መልእክት ለውስጥ አባላትም ሆነ
-ለሰፊው ህዝብ ለማስተላለፍ የተለያዩ ሚዲያ መድረኮችን - እንደ ማህበራዊ ሚዲያ፣ የቀጥታ ስርጭት፣ የኦዲዮ ቪዥዋል ፕሮዳክሽን እና
-የታተሙ ቁሳቁሶችን ትጠቀማለች።
-
-የሚድያ ሚኒስትርሪ ዓላማ የቤተ ክርስቲያናችን መልእክት ከደጃፋችን አልፎ ለብዙ ታዳሚዎች እንዲደርስ ማስቻል ነው።
-ሚኒስትሪው በተለያዩ የሚዲያ መድረኮችን (ማህበራዊ ሚዲያ፣ ፖድካስቶች፣ የቀጥታ ስርጭቶች፣ ድረ-ገጾች፣ ወዘተ.)
-በመጥቀም ወንጌልን ማሰራጨት ነው፡፡.',
-    
+    description: 'Our Women’s Ministry focuses on empowering women to grow spiritually and to serve in the church and the world.',
+    schedule: <<~SCHEDULE
+       Bible Study (WhatsApp group): Mondays from 21:00-22:00
+       Prayer Time (WhatsApp group): Saturdays from 21:00-22:00
+       Monthly gatherings for Bible study and fellowship: Last Saturday of the month from 16:00-18:00
+    SCHEDULE
   },
 ]
-
 
 ministries.each do |ministry|
   Ministry.create!(ministry)
 end
 
-puts "#{ministries.length} Ministries loaded successfully."
+puts "#{ministries.length} ministries loaded successfully."
