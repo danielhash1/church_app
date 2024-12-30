@@ -37,12 +37,12 @@
 </section>
 
 
-
 <!-- About Us Section -->
-<section class="py-10 sm:py-16 px-4 sm:px-10 bg-white max-sm:pt-96 fade-in fade-in-delay-2 mt-20 " id="about-us-id">
+<section class="py-10 sm:py-16 px-4 sm:px-10 bg-white max-sm:pt-96 fade-in fade-in-delay-2 mt-20" id="about-us-id">
     <div class="max-w-7xl mx-auto">
         <h2 class="text-5xl md:text-4xl max-sm:text-5xl font-extrabold mb-6 text-left fade-in-element">About Us</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
             <!-- Text Content -->
             <div class="text-left fade-in-element">
                 <p id="mainTextEnglish">
@@ -73,13 +73,95 @@
                 <button class="mt-2 text-black bg-teal-300 px-3 py-1 rounded-full text-sm" id="showMoreBtnAmharic" onclick="toggleText('Amharic')">Show More...</button>
             </div>
 
-            <!-- Image Content -->
-            <div class="fade-in-element">
-                <img src="<%= asset_path('church-image.jpg') %>" class="rounded-3xl shadow-md w-full max-w-md mx-auto" alt="Church Image">
-            </div>
+<!-- Image Content -->
+<div class="fade-in-element flex justify-center">
+    <!-- SwiperJS Carousel -->
+    <div class="w-96 swiper-container rounded-2xl shadow-lg fade-in-carousel">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="<%= asset_path('church-image.jpg') %>" class="w-full max-w-md mx-auto" alt="Church Image 1"></div>
+            <div class="swiper-slide"><img src="<%= asset_path('home-image-2.jpg') %>" class="w-full max-w-md mx-auto" alt="Church Image 2"></div>
+            <div class="swiper-slide"><img src="<%= asset_path('home-image-3.jpg') %>" class="w-full max-w-md mx-auto" alt="Church Image 3"></div>
+            <div class="swiper-slide"><img src="<%= asset_path('home-image-4.jpg') %>" class="w-full max-w-md mx-auto" alt="Church Image 3"></div>
+            <div class="swiper-slide"><img src="<%= asset_path('home-image-5.jpg') %>" class="w-full max-w-md mx-auto" alt="Church Image 3"></div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
+</div>
+</div>
 </section>
+
+<!-- SwiperJS Initialization -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        centeredSlides: true,
+        slidesPerView: 1, // Only show one slide
+        autoplay: {
+            delay: 3000, // Autoscroll every 3 seconds
+            disableOnInteraction: false, // Continue autoplay even after user interaction
+        },
+    });
+</script>
+
+<!-- SwiperJS Styles -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Custom CSS -->
+<style>
+/* Prevent horizontal scrolling */
+body {
+    overflow-x: hidden;
+}
+
+/* Fix swiper-slide overflow issue */
+.swiper-container {
+    overflow: hidden; /* Ensures no extra content escapes the container */
+    max-width: 100%; /* Prevents horizontal stretching */
+}
+
+/* All slides same dimensions */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure slide takes full width of container */
+    box-sizing: border-box; /* Prevent padding/margin issues */
+}
+
+/* Hide non-active slides */
+.swiper-slide {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide.swiper-slide-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Add fade-in effect for the carousel */
+.fade-in-carousel {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
 
 
 <!-- Blog/Post Section -->
