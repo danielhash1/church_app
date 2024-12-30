@@ -15,15 +15,15 @@ end
 puts "#{users.length} users loaded successfully."
 
 
-posts = [
-  { title: 'Who is Jesus?', description: 'Jesus is the Son of God and our Savior.' },
-]
+# posts = [
+#   { title: 'Who is Jesus?', description: 'Jesus is the Son of God and our Savior.' },
+# ]
 
-posts.each do |post|
-  Post.create!(post)
-end
+# posts.each do |post|
+#   Post.create!(post)
+# end
 
-puts "#{posts.length} posts loaded successfully."
+# puts "#{posts.length} posts loaded successfully."
 
 # Create some ministries
 ministries = [
