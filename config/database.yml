@@ -21,3 +21,4 @@ production:
   password: <%= ENV['SUPABASE_DB_PASSWORD'] %>
   host: <%= ENV['SUPABASE_DB_HOST'] %>
   port: 6543
+  prepared_statements: false
