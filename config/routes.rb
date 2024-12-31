@@ -2,13 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  
   namespace :admin do
     root 'home#index'
     get 'sessions/new'
     get 'sessions/create'
     get 'sessions/destroy'
+    resources :carousel_images, only: [:index, :new, :create, :edit, :update, :destroy]
+    
+
   end
+
+
 
 resources :posts
 # config/routes.rb

@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col bg-gray-100">
+  <!-- Main Content Wrapper -->
+  <div class="flex-grow container mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <%= form_with model: @new_carousel_image, url: admin_carousel_images_path, local: true, html: { multipart: true } do |form| %>
+      <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+          <%= form.label :image, "Upload Image", class: "block text-gray-700 font-medium mb-2" %>
+          <%= form.file_field :image, class: "w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        </div>
+
+        <div class="mb-4">
+          <%= form.label :position, "Position", class: "block text-gray-700 font-medium mb-2" %>
+          <%= form.number_field :position, class: "w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        </div>
+
+        <div class="flex justify-center">
+          <%= form.submit "Add Image", class: "px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300" %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Display Existing Carousel Images with Delete Option -->
+    <div class="mt-10">
+      <h3 class="text-2xl font-bold mb-6 text-gray-700 text-center">Existing Carousel Images</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <% @carousel_images.each do |carousel_image| %>
+          <div class="bg-white p-4 rounded-lg shadow-md text-center">
+            <% if carousel_image.image.attached? %>
+              <%= image_tag url_for(carousel_image.image), class: "w-32 h-32 object-cover mx-auto rounded-lg mb-4", alt: "Carousel Image" %>
+            <% end %>
+            <p class="text-gray-700 font-medium mb-2">Position: <%= carousel_image.position %></p>
+            <%= button_to "Delete", admin_carousel_image_path(carousel_image), 
+                          method: :delete, 
+                          data: { confirm: "Are you sure you want to delete this image?" },
+                          class: "bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 text-center">
+    <p class="text-sm">&copy; 2024 Ethiopian Evangelical Church. All rights reserved.</p>
+  </footer>
+</div>
