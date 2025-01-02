@@ -3,8 +3,5 @@ class Post < ApplicationRecord
   
     validates :title, presence: true
     validates :description, presence: true
-    validates :author_name, presence: true
-    validates :author_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-
   end
   

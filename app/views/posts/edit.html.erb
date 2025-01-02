@@ -71,12 +71,12 @@
     <!-- Author and Email Information -->
     <div class="mb-4">
       <%= form.label :author_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :author_name, value: @post.author_name, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.text_field :author_name, value: @post.author_name, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="mb-4">
       <%= form.label :author_email, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.email_field :author_email, value: @post.author_email, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.email_field :author_email, value: @post.author_email, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
     <div class="flex items-center justify-center">
