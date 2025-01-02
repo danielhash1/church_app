@@ -2,12 +2,9 @@
 
   <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" onclick="window.history.back()">< Back</button>
 
-
   <h2 class="text-3xl font-bold my-8 text-center">
      Edit Post
   </h2>
-
-  
 
   <%= form_with model: @post, local: true, class: "max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-md mt-4", multipart: true do |form| %>
     
@@ -71,6 +68,17 @@
       <div id="preview_container" class="flex flex-wrap gap-4"></div>
     </div>
 
+    <!-- Author and Email Information -->
+    <div class="mb-4">
+      <%= form.label :author_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :author_name, value: @post.author_name, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :author_email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.email_field :author_email, value: @post.author_email, required: true, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
     <div class="flex items-center justify-center">
       <%= form.submit "Update Post", class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     </div>
@@ -103,5 +111,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-
 </script>

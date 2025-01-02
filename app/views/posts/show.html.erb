@@ -1,83 +1,149 @@
 <div class='h-fu'>
+  <% if @post.images.attached? || @post.video_url.present? %>
+    <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" onclick="window.history.back()">< Back</button>
 
-<% if @post.images.attached? || @post.video_url.present? %>
-  <button class="back-button mb-4 py-2 px-4 text-gray-500 rounded hover:text-gray-800 mt-5" onclick="window.history.back()">< Back</button>
+    <div class="max-w-2xl mx-auto p-4 h-full">
+      <h3 class="text-4xl text-center font-bold mb-2"><%= @post.title %></h3>
 
-  <div class="max-w-2xl mx-auto p-4 h-full">
-    <h3 class="text-4xl text-center font-bold mb-2"><%= @post.title %></h3>
-
-    <p class="text-center mb-4 text-gray-400">
-      <% if @post.updated_at = @post.created_at %>
-        Posted on: <%= @post.updated_at.strftime("%d %B %Y") %>
-      <% else %>
-        Created on: <%= @post.created_at.strftime("%d %B %Y") %>
-      <% end %>
-    </p>
-
-    <% if session[:user_id] %>
-      <% user = User.find_by(id: session[:user_id]) %>
-      <% if user&.admin? %>
-        <div class="mb-4 justify-center flex gap-3">
-          <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
-          <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Delete this post?" }, class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <div class="carousel relative">
-      <div class="carousel-track-container overflow-hidden w-full">
-        <div class="carousel-track flex transition-transform duration-300 ease-in-out rounded-xl">
-        
-        <% if @post.video_url.present? %>
-        <div class="carousel-slide min-w-full flex justify-center items-center bg-black">
-          <% video_id = @post.video_url.split("v=").last %>
-          <iframe class="rounded-xl carousel-video w-full h-full" 
-                  src="https://www.youtube.com/embed/<%= video_id %>" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
-        </div>
+      <div class='block gap-5 justify-between items-center'>
+      
+          
+      <p class="text-center mb-2 text-gray-400 ">
+        <% if @post.updated_at = @post.created_at %>
+          Posted on: <%= @post.updated_at.strftime("%d %B %Y") %>
+        <% else %>
+          Created on: <%= @post.created_at.strftime("%d %B %Y") %>
         <% end %>
+      </p>
 
-        <% if @post.images.attached? %>
-          <% @post.images.each do |image| %>
-            <div class="carousel-slide min-w-full flex justify-center items-center bg-black">
-              <%= image_tag image, class: "carousel-image object-cover w-full max-h-[500px]" %>
-            </div>
-          <% end %>
+
+
+      <div class="text-center items-center block text-gray-600 mb-4">
+        <% if @post.author_name.present? %>
+          <div class='ml-2 block'>
+            <span class='font-semibold'>Author:</span> 
+            <%= @post.author_name %>
+          </div>
         <% end %>
-        </div>
+      
+        <% if @post.author_email.present? %>
+          <div class='ml-2 block'>
+            <span class='font-semibold'>E-mail:</span>
+            <%= @post.author_email %>
+            <button id="copyButton" onclick="copyEmail()" class="ml-2 text-gray-400 hover:text-gray-500">
+              <i id="copyIcon" class="fas fa-copy"></i> <!-- Иконка копирования -->
+            </button>
+          </div>
+        <% end %>
+      
       </div>
-    
-      <!-- Кнопки навигации -->
-      <% if @post.images.count + (@post.video_url.present? ? 1 : 0) > 1 %>
-        <button class="carousel-button carousel-button-left absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70">&lt;</button>
-        <button class="carousel-button carousel-button-right absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70">&gt;</button>
+
+
+
+
+      </div>
+
+      
+      <% if session[:user_id] %>
+        <% user = User.find_by(id: session[:user_id]) %>
+        <% if user&.admin? %>
+          <div class="mb-4 justify-center flex gap-3">
+            <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+            <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Delete this post?" }, class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" %>
+          </div>
+        <% end %>
       <% end %>
+
+      <div class="carousel relative">
+        <div class="carousel-track-container overflow-hidden w-full">
+          <div class="carousel-track flex transition-transform duration-300 ease-in-out rounded-xl">
+          
+          <% if @post.video_url.present? %>
+          <div class="carousel-slide min-w-full flex justify-center items-center bg-black">
+            <% video_id = @post.video_url.split("v=").last %>
+            <iframe class="rounded-xl carousel-video w-full h-full" 
+                    src="https://www.youtube.com/embed/<%= video_id %>" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+          <% end %>
+
+          <% if @post.images.attached? %>
+            <% @post.images.each do |image| %>
+              <div class="carousel-slide min-w-full flex justify-center items-center bg-black">
+                <%= image_tag image, class: "carousel-image object-cover w-full max-h-[500px]" %>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      
+        <!-- Кнопки навигации -->
+        <% if @post.images.count + (@post.video_url.present? ? 1 : 0) > 1 %>
+          <button class="carousel-button carousel-button-left absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70">&lt;</button>
+          <button class="carousel-button carousel-button-right absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded hover:bg-opacity-70">&gt;</button>
+        <% end %>
+      </div>
+
+      <!-- Индикаторы карусели - выносим их под карусель -->
+      <div class="carousel-indicators flex justify-center space-x-2 mt-4">
+        <% @post.images.each_with_index do |image, index| %>
+          <button class="carousel-dot w-3 h-3 bg-slate-600 rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-index="<%= index %>"></button>
+        <% end %>
+        <% if @post.video_url.present? %>
+          <button class="carousel-dot w-3 h-3 bg-slate-600 rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-index="<%= @post.images.count %>"></button>
+        <% end %>
+      </div>
+
+      <p class='text-2xl mt-2 font-semibold'>Description</p>
+
+      <div class="post-info mt-4 bg-gray-100 p-3 rounded-md text-gray-700 mb-20 text-start">
+        <p class="text-md"><%= simple_format(@post.description) %></p>
+      </div>
     </div>
-
-    <!-- Индикаторы карусели - выносим их под карусель -->
-    <div class="carousel-indicators flex justify-center space-x-2 mt-4">
-      <% @post.images.each_with_index do |image, index| %>
-        <button class="carousel-dot w-3 h-3 bg-slate-600 rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-index="<%= index %>"></button>
-      <% end %>
-      <% if @post.video_url.present? %>
-        <button class="carousel-dot w-3 h-3 bg-slate-600 rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-index="<%= @post.images.count %>"></button>
-      <% end %>
-    </div>
-
-    <p class='text-2xl mt-2 font-semibold'>Description</p>
-
-    <div class="post-info mt-4 bg-gray-100 p-3 rounded-md text-gray-700 mb-20 text-start">
-    <p class="text-md"><%= simple_format(@post.description) %></p>
-  </div>
-  
-  </div>
-<% end %>
+  <% end %>
 </div>
 
 <script>
+function copyEmail() {
+    // Находим email
+    const email = "<%= @post.author_email %>";
+    
+    // Создаем временное текстовое поле для копирования
+    const textArea = document.createElement('textarea');
+    textArea.value = email;
+    document.body.appendChild(textArea);
+    
+    // Выбираем текст в текстовом поле
+    textArea.select();
+    textArea.setSelectionRange(0, 99999); // Для мобильных устройств
+    
+    // Выполняем команду копирования
+    document.execCommand('copy');
+    
+    // Убираем временное текстовое поле
+    document.body.removeChild(textArea);
+    
+    // Изменяем иконку и цвет
+    const copyButton = document.getElementById("copyButton");
+    const copyIcon = document.getElementById("copyIcon");
+    
+    copyIcon.classList.remove("fa-copy");
+    copyIcon.classList.add("fa-check");  // Сменить на иконку успеха
+    
+    copyButton.classList.remove("text-gray-500");
+    
+
+    
+    // Восстановить иконку через 2 секунды
+    setTimeout(() => {
+      copyIcon.classList.remove("fa-check");
+      copyIcon.classList.add("fa-copy");
+    }, 2000);
+  }
+
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".carousel-track");
   const slides = Array.from(track.children);

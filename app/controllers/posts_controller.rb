@@ -66,9 +66,8 @@ class PostsController < ApplicationController
     end
 
     def post_params
-    # Обновлено: убрано :image_url для актуальности
-    params.require(:post).permit(:title, :description, :video_url, images: [])
-    end
+        params.require(:post).permit(:title, :description, :video_url, :author_name, :author_email, images: [])
+      end
 
     def authorize_admin!
     unless current_user&.admin?

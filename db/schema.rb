@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_31_150353) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_02_152836) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -75,11 +75,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_31_150353) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.string "image_url"
     t.string "video_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "author_name"
+    t.string "author_email"
   end
 
   create_table "users", force: :cascade do |t|

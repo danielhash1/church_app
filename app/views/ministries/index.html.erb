@@ -24,14 +24,13 @@
         <!-- Modal for this ministry -->
         <div id="modal-<%= ministry.id %>" class="modal invisible z-100">
           <div class="modal-content flex flex-col relative">
-
-            <span class="modal-close absolute top-4 right-4 cursor-pointer text-2xl hover:text-red-500 mr-2">&times;</span>
+            <span class="modal-close absolute top-4 right-4 cursor-pointer text-2xl hover:text-red-500 mr-2">×</span>
         
             <div class='mt-5'>
                 <h2 class="text-2xl font-bold"><%= ministry.name %></h2>
-                <p class="mt-3"><%= simple_format(ministry.description) %></p>
+                <p class="mt-3" style="line-height: 1.6; font-size: 18px; text-align: left;"><%= simple_format(ministry.description) %></p>
                 <h4 class="text-xl font-bold mt-6">Schedule</h4>
-                <div class="mt-3"><%= simple_format(ministry.schedule) %></div>
+                <div class="mt-3" style="line-height: 1.6; font-size: 18px; text-align: left;"><%= simple_format(ministry.schedule) %></div>
             </div>
 
         
@@ -48,7 +47,6 @@
   </div>
 </section>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const isAdmin = document.getElementById('ministries-list').getAttribute('data-admin') === 'true';
@@ -60,11 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const modalId = this.getAttribute('data-modal');
             const modalElement = document.getElementById(modalId);
             if (modalElement) {
-                modalElement.classList.remove('invisible'); // Убираем класс 'invisible'
-                document.body.style.overflow = 'hidden'; // Отключаем прокрутку страницы
-                document.documentElement.style.overflow = 'hidden'; // Отключаем прокрутку на корне
-
-                // Блокируем горизонтальную прокрутку, если она есть
+                modalElement.classList.remove('invisible'); 
+                document.body.style.overflow = 'hidden'; 
+                document.documentElement.style.overflow = 'hidden';
                 const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
                 document.body.style.paddingRight = `${scrollBarWidth}px`;
             } else {
@@ -77,10 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeModalElements = document.querySelectorAll('.modal-close');
     closeModalElements.forEach(closeBtn => {
         closeBtn.addEventListener('click', function () {
-            this.closest('.modal').classList.add('invisible'); // Добавляем класс 'invisible' для скрытия модалки
-            document.body.style.overflow = ''; // Включаем прокрутку страницы
-            document.documentElement.style.overflow = ''; // Включаем прокрутку на корне
-            document.body.style.paddingRight = ''; // Убираем правый отступ
+            this.closest('.modal').classList.add('invisible'); 
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = ''; 
+            document.body.style.paddingRight = ''; 
         });
     });
 
@@ -89,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
     modals.forEach(modal => {
         modal.addEventListener('click', function (event) {
             if (event.target === this) {
-                this.classList.add('invisible'); // Если кликнули вне контента, скрываем модалку
-                document.body.style.overflow = ''; // Включаем прокрутку страницы
-                document.documentElement.style.overflow = ''; // Включаем прокрутку на корне
-                document.body.style.paddingRight = ''; // Убираем правый отступ
+                this.classList.add('invisible'); 
+                document.body.style.overflow = ''; 
+                document.documentElement.style.overflow = ''; 
+                document.body.style.paddingRight = ''; 
             }
         });
     });
@@ -104,10 +100,17 @@ document.addEventListener('DOMContentLoaded', function () {
             ministry.classList.add('fade-in');
         }, index * 100);
     });
+
+    // Динамическое изменение размера модального окна при изменении размеров окна браузера
+    window.addEventListener('resize', function() {
+        const activeModals = document.querySelectorAll('.modal:not(.invisible)');
+        activeModals.forEach(modal => {
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.style.maxHeight = `${window.innerHeight * 0.8}px`;
+        });
+    });
 });
-
 </script>
-
 
 <style>
     .fade-in {
@@ -121,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /* Стиль для модального окна с эффектом блюра */
     .modal {
         display: flex;
         align-items: center;
@@ -131,28 +133,26 @@ document.addEventListener('DOMContentLoaded', function () {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.7); /* Темный полупрозрачный фон */
-        backdrop-filter: blur(1px); /* Эффект размытия фона */
-        z-index: 99999999; /* Обеспечиваем, чтобы модальное окно перекрывало все элементы */
-        overflow-y: auto; /* Добавляем прокрутку, если контента больше, чем экран */
+        background-color: rgba(0, 0, 0, 0.7); 
+        backdrop-filter: blur(1px); 
+        z-index: 99999999; 
+        overflow-y: auto; 
     }
 
-    /* Контейнер содержимого модального окна */
     .modal-content {
         margin: auto;
         justify-content: center;
         background-color: white;
-        padding: 20px;
+        padding: 30px;
         border-radius: 8px;
         position: relative;
         width: 80%;
-        max-width: 600px;
-        z-index: 1001; /* Содержимое модалки должно быть поверх фона */
-        max-height: 80vh; /* Ограничение по высоте */
-        overflow-y: auto; /* Прокрутка, если контента много */
+        max-width: 700px;
+        z-index: 1001;
+        max-height: 80vh;
+        overflow-y: auto;
     }
 
-    /* Закрытие модального окна */
     .modal-close {
         position: absolute;
         top: 10px;
@@ -174,4 +174,8 @@ document.addEventListener('DOMContentLoaded', function () {
         transform: scale(1.05);
     }
 
+    .modal-content p, .modal-content div {
+        text-align: left;
+        word-wrap: break-word;
+    }
 </style>

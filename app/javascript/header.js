@@ -30,5 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-console.log('Header.js loaded');
