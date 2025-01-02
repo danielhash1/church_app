@@ -19,14 +19,11 @@
 
 
       <div class="text-center items-center block text-gray-600 mb-4">
-        <% if @post.author_name.present? %>
           <div class='ml-2 block'>
             <span class='font-semibold'>Author:</span> 
             <%= @post.author_name %>
           </div>
-        <% end %>
       
-        <% if @post.author_email.present? %>
           <div class='ml-2 block'>
             <span class='font-semibold'>E-mail:</span>
             <%= @post.author_email %>
@@ -34,7 +31,6 @@
               <i id="copyIcon" class="fas fa-copy"></i> <!-- Иконка копирования -->
             </button>
           </div>
-        <% end %>
       
       </div>
 
@@ -48,8 +44,8 @@
         <% user = User.find_by(id: session[:user_id]) %>
         <% if user&.admin? %>
           <div class="mb-4 justify-center flex gap-3">
-            <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
-            <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Delete this post?" }, class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" %>
+            <%= link_to "Edit", edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-8 w-24 rounded-full hover:bg-blue-700" %>
+            <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Delete this post?" }, class: "bg-red-500 text-white py-2 px-5 w-24 rounded-full hover:bg-red-600" %>
           </div>
         <% end %>
       <% end %>

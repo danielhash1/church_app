@@ -9,6 +9,10 @@ class MinistriesController < ApplicationController
     @ministry = Ministry.new
   end
 
+  def show
+    @ministry = Ministry.find(params[:id])
+  end
+
   def create
     @ministry = Ministry.new(ministry_params)
     @ministry.position = Ministry.count + 1  # Устанавливаем позицию как последнюю

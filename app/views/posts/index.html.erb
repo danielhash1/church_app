@@ -6,11 +6,11 @@
             <% if session[:user_id] %>
                 <% user = User.find_by(id: session[:user_id]) %>
                 <% if user&.admin? %>
-                    <%= link_to 'Create a new post +', new_post_path, class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-5 rounded focus:outline-none focus:shadow-outline" %>
+                    <%= link_to 'Create a new post +', new_post_path, class: "bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-5 rounded-full focus:outline-none focus:shadow-outline" %>
                 <% end %>
             <% end %>        
 
-            <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <% @posts.reverse.each do |post| %>
