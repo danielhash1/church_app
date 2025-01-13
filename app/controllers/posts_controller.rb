@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     before_action :set_post, only: %i[show edit update destroy]
 
     def index
-    @posts = Post.all
-    end
+        @posts = Post.order(created_at: :desc)
+      end
 
     def show
     # Пост загружается в set_post
