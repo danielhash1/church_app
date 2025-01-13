@@ -13,6 +13,3 @@
 */
 @import 'actiontext.css';
 
-.prose {
-  @apply prose prose-lg max-w-full;
-}
