@@ -98,3 +98,49 @@
     <% end %>
   </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const carouselTrack = document.getElementById("carouselTrack");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".carousel-dot");
+  let currentSlideIndex = 0;
+
+  // Обновить отображение карусели
+  function updateCarousel() {
+    const slideWidth = slides[0].clientWidth;
+    carouselTrack.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
+
+    // Обновить индикаторы
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("bg-slate-900", index === currentSlideIndex);
+      dot.classList.toggle("opacity-100", index === currentSlideIndex);
+      dot.classList.toggle("opacity-50", index !== currentSlideIndex);
+    });
+  }
+
+  // Переключение слайдов
+  function moveSlide(direction) {
+    currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  // Установка конкретного слайда
+  function setSlide(index) {
+    currentSlideIndex = index;
+    updateCarousel();
+  }
+
+  // Обработчики событий для стрелок
+  document.querySelector(".carousel-button-left")?.addEventListener("click", () => moveSlide(-1));
+  document.querySelector(".carousel-button-right")?.addEventListener("click", () => moveSlide(1));
+
+  // Обработчики событий для индикаторов
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => setSlide(index));
+  });
+
+  // Инициализация
+  updateCarousel();
+});
+
+</script>
