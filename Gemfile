@@ -18,7 +18,7 @@ end
 
 gem 'activestorage-cloudinary-service'
 
-
+gem 'trix'
 # Добавьте Postgres для продакшена
 gem 'pg', '~> 1.2'
 

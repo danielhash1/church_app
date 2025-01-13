@@ -24,7 +24,11 @@
                             
                             <p class="mt-2 font-semibold text-md"><%= post.title %></p>
                             <p class="text-xs text-gray-500"><%= post.created_at.strftime("%B %d, %Y") %></p>
-                            <p class="text-sm mt-3 text-gray-600 pb-3 px-3 overflow-hidden"><%= post.description.truncate(80) %></p>
+                            <p class="text-sm mt-3 text-gray-600 pb-3 px-3 overflow-hidden">
+                            <%= post.description.present? ? post.description.truncate(80) : '' %>
+                        </p>
+                        
+                            
                         <% end %>
 
                         <% if session[:user_id] && user&.admin? %>

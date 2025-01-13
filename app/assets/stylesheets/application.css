@@ -12,7 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require trix
+
  */
+
+.preserve-whitespace {
+    white-space: pre-line;
+}
 
 
  header {
@@ -50,4 +56,5 @@ p + p {
 #fullscreenImage:hover {
     transform: scale(1.05);
 }
+
 
